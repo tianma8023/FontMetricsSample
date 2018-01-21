@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical"
+    tools:context="com.github.tianma8023.fontmetricssample.MainActivity">
+
+    <com.github.tianma8023.fontmetricssample.view.FontMetricsView
+        android:id="@+id/fontMetricsView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:padding="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/textUpdateLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fontMetricsView"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/textEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:hint="@string/text"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/textSizeEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:hint="@string/text_size"
+            android:inputType="number"
+            android:textColor="@color/white"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/updateButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/update"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/topCheckBox"
+        style="@style/StartCheckBoxStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textUpdateLinearLayout"
+        android:text="@string/top_line"/>
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/ascentCheckBox"
+        style="@style/EndCheckBoxStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textUpdateLinearLayout"
+        android:layout_marginStart="110dp"
+        android:layout_toEndOf="@id/topCheckBox"
+        android:text="@string/ascent_line"/>
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/baseLineCheckBox"
+        style="@style/StartCheckBoxStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topCheckBox"
+        android:text="@string/baseLine"/>
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/descentCheckBox"
+        style="@style/EndCheckBoxStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ascentCheckBox"
+        android:layout_alignTop="@+id/baseLineCheckBox"
+        android:layout_marginStart="0dp"
+        android:text="@string/descent_line"/>
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/bottomCheckBox"
+        style="@style/StartCheckBoxStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/baseLineCheckBox"
+        android:text="@string/bottom_line"/>
+
+    <TextView
+        android:id="@+id/textAlignmentPromptTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bottomCheckBox"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/text_alignment"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+    <RadioGroup
+        android:id="@+id/textAlignRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textAlignmentPromptTv"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/leftRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/left"
+            android:textColor="@color/white"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/centerRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/center"
+            android:textColor="@color/white"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/rightRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/right"
+            android:textColor="@color/white"/>
+    </RadioGroup>
+
+</RelativeLayout>

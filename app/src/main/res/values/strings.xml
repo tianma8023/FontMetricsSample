@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FontMetricsSample</string>
+    <string name="top_line">Top Line</string>
+    <string name="bottom_line">Bottom Line</string>
+    <string name="descent_line">Descent Line</string>
+    <string name="baseLine">BaseLine</string>
+    <string name="ascent_line">Ascent Line</string>
+    <string name="update">Update</string>
+    <string name="text">Text</string>
+    <string name="text_size">Text size in px</string>
+    <string name="left">LEFT</string>
+    <string name="center">CENTER</string>
+    <string name="right">RIGHT</string>
+    <string name="text_alignment">Paint.Align :</string>
+</resources>
