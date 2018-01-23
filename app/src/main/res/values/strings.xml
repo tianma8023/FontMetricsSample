@@ -12,4 +12,8 @@
     <string name="center">CENTER</string>
     <string name="right">RIGHT</string>
     <string name="text_alignment">Paint.Align :</string>
+    <string name="baseline_x_alignment">BaselineX Alignment</string>
+    <string name="baseline_y_alignment">BaselineY Alignment</string>
+    <string name="end">END</string>
+    <string name="start">START</string>
 </resources>

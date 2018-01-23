@@ -15,8 +15,22 @@ import com.github.tianma8023.fontmetricssample.R;
 /**
  * Created by Tianma on 2018/1/20.
  */
-
 public class FontMetricsView extends View {
+
+    public enum BaselineAlign {
+        /**
+         * Alignment - Start
+         */
+        START,
+        /**
+         * Alignment - Center
+         */
+        CENTER,
+        /**
+         * Alignment - End
+         */
+        END,
+    }
 
     public static final int DEFAULT_TEXT_SIZE_PX = 150;
     private static final int DEFAULT_STROKE_WIDTH_PX = 4;
@@ -35,11 +49,15 @@ public class FontMetricsView extends View {
     private Paint.Align mTextAlign = Paint.Align.LEFT;
 
     private Paint mLinePaint;
+    private Paint mBasePointPaint;
 
     private float mWidth; // View width
     private float mHeight; // View height
 
     private Paint.FontMetrics mFontMetrics;
+
+    private BaselineAlign baselineXAlign = BaselineAlign.START;
+    private BaselineAlign baselineYAlign = BaselineAlign.CENTER;
 
     private Context mContext;
 
@@ -73,6 +91,11 @@ public class FontMetricsView extends View {
         // init line paint
         mLinePaint = new Paint();
         mLinePaint.setStrokeWidth(mLineStrokeWidth);
+
+        // init base point paint
+        mBasePointPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mBasePointPaint.setStyle(Paint.Style.FILL);
+        mBasePointPaint.setColor(ContextCompat.getColor(context, R.color.amber));
     }
 
     @Override
@@ -92,48 +115,74 @@ public class FontMetricsView extends View {
     private void drawImpl(Canvas canvas) {
 
         float startX = getPaddingLeft();
-        // baseLine在可绘制区域中间
-        float startY = getPaddingTop() + (mHeight - getPaddingTop() - getPaddingBottom()) / 2;
-        float stopX = mWidth - getPaddingRight();
+        float endX = mWidth - getPaddingRight();
+        float startY = getPaddingTop();
+        float endY = mHeight - getPaddingBottom();
 
-        float baseLineY = startY; // baseLine的X坐标
+        // calculate baselineX and baselineY
+        float baselineX; // baseline的X坐标
+        float baselineY = startY; // baseLine的Y坐标
+        switch (baselineXAlign) {
+            case START:
+                baselineX = startX;
+                break;
+            case CENTER:
+                baselineX = (endX + startX) / 2;
+                break;
+            default:
+                baselineX = endX;
+                break;
+        }
+        switch (baselineYAlign) {
+            case START:
+                baselineY = startY;
+                break;
+            case CENTER:
+                baselineY = (startY + endY) / 2;
+                break;
+            default:
+                baselineY = endY;
+                break;
+        }
 
         // draw text
-        canvas.drawText(mText, startX, baseLineY, mTextPaint);
+        canvas.drawText(mText, baselineX, baselineY, mTextPaint);
+        // draw base point(baselineX, baselineY)
+        canvas.drawCircle(baselineX, baselineY, 10, mBasePointPaint);
 
         // draw lines
         if (mTopLineVisible) { // drop top line
             // top线的y坐标 = baseLineY + fontMetrics.top
-            startY = baseLineY + mFontMetrics.top;
+            startY = baselineY + mFontMetrics.top;
             mLinePaint.setColor(ContextCompat.getColor(mContext, R.color.red));
-            canvas.drawLine(startX, startY, stopX, startY, mLinePaint);
+            canvas.drawLine(startX, startY, endX, startY, mLinePaint);
         }
 
         if (mAscentLineVisible) { // draw ascent line
             // ascent线的y坐标 = baseLineY + fontMetrics.ascent
-            startY = baseLineY + mFontMetrics.ascent;
+            startY = baselineY + mFontMetrics.ascent;
             mLinePaint.setColor(ContextCompat.getColor(mContext, R.color.teal));
-            canvas.drawLine(startX, startY, stopX, startY, mLinePaint);
+            canvas.drawLine(startX, startY, endX, startY, mLinePaint);
         }
 
         if (mBaseLineVisible) { // draw base line
-            startY = baseLineY;
+            startY = baselineY;
             mLinePaint.setColor(ContextCompat.getColor(mContext, R.color.purple));
-            canvas.drawLine(startX, startY, stopX, startY, mLinePaint);
+            canvas.drawLine(startX, startY, endX, startY, mLinePaint);
         }
 
         if (mDescentLineVisible) { // draw descent line
             // descent线的y坐标 = baseLineY + fontMetrics.descent
-            startY = baseLineY + mFontMetrics.descent;
+            startY = baselineY + mFontMetrics.descent;
             mLinePaint.setColor(ContextCompat.getColor(mContext, R.color.indigo));
-            canvas.drawLine(startX, startY, stopX, startY, mLinePaint);
+            canvas.drawLine(startX, startY, endX, startY, mLinePaint);
         }
 
         if (mBottomLineVisile) { // draw bottom line
             // bottom线的y坐标 = baseLineY + fontMetrics.bottom
-            startY = baseLineY + mFontMetrics.bottom;
+            startY = baselineY + mFontMetrics.bottom;
             mLinePaint.setColor(ContextCompat.getColor(mContext, R.color.green));
-            canvas.drawLine(startX, startY, stopX, startY, mLinePaint);
+            canvas.drawLine(startX, startY, endX, startY, mLinePaint);
         }
     }
 
@@ -183,6 +232,16 @@ public class FontMetricsView extends View {
     public void setTextAlign(Paint.Align align) {
         mTextAlign = align;
         refreshTextPaint();
+        invalidate();
+    }
+
+    public void setBaselineXAlign(BaselineAlign baselineXAlign) {
+        this.baselineXAlign = baselineXAlign;
+        invalidate();
+    }
+
+    public void setBaselineYAlign(BaselineAlign baselineYAlign) {
+        this.baselineYAlign = baselineYAlign;
         invalidate();
     }
 }

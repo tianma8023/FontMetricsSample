@@ -122,6 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/left"
+            android:checked="true"
             android:textColor="@color/white"/>
 
         <android.support.v7.widget.AppCompatRadioButton
@@ -138,6 +139,101 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/right"
+            android:textColor="@color/white"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/baseLineXPromptTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textAlignRadioGroup"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/baseline_x_alignment"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+    <RadioGroup
+        android:id="@+id/baseLineXRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/baseLineXPromptTv"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/baseLineXStartRb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/start"
+            android:textColor="@color/white"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/baseLineXCenterRb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/center"
+            android:textColor="@color/white"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/baseLineXEndRb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/end"
+            android:textColor="@color/white"/>
+    </RadioGroup>
+
+
+    <TextView
+        android:id="@+id/baseLineYPromptTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/baseLineXRadioGroup"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/baseline_y_alignment"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+    <RadioGroup
+        android:id="@+id/baseLineYRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/baseLineYPromptTv"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/baseLineYStartRb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/start"
+            android:textColor="@color/white"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/baseLineYCenterRb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/center"
+            android:textColor="@color/white"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/baseLineYEndRb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/end"
             android:textColor="@color/white"/>
     </RadioGroup>
 

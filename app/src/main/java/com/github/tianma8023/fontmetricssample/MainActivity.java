@@ -23,7 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatCheckBox mBaselineCheckBox;
     private AppCompatCheckBox mDescentCheckBox;
     private AppCompatCheckBox mBottomCheckBox;
+
     private RadioGroup mTextAlignRadioGroup;
+    private RadioGroup mBaselineXAlignRG;
+    private RadioGroup mBaselineYAlignRG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         mBottomCheckBox = findViewById(R.id.bottomCheckBox);
 
         mTextAlignRadioGroup = findViewById(R.id.textAlignRadioGroup);
+        mBaselineXAlignRG = findViewById(R.id.baseLineXRadioGroup);
+        mBaselineYAlignRG = findViewById(R.id.baseLineYRadioGroup);
     }
 
     private void initListener() {
@@ -85,6 +90,38 @@ public class MainActivity extends AppCompatActivity {
                 mFontMetricsView.setTextAlign(align);
             }
         });
+
+        mBaselineXAlignRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                FontMetricsView.BaselineAlign align = FontMetricsView.BaselineAlign.START;
+                switch (checkedId) {
+                    case R.id.baseLineXCenterRb:
+                        align = FontMetricsView.BaselineAlign.CENTER;
+                        break;
+                    case R.id.baseLineXEndRb:
+                        align = FontMetricsView.BaselineAlign.END;
+                        break;
+                }
+                mFontMetricsView.setBaselineXAlign(align);
+            }
+        });
+
+        mBaselineYAlignRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                FontMetricsView.BaselineAlign align = FontMetricsView.BaselineAlign.START;
+                switch (checkedId) {
+                    case R.id.baseLineYCenterRb:
+                        align = FontMetricsView.BaselineAlign.CENTER;
+                        break;
+                    case R.id.baseLineYEndRb:
+                        align = FontMetricsView.BaselineAlign.END;
+                        break;
+                }
+                mFontMetricsView.setBaselineYAlign(align);
+            }
+        });
     }
 
     private class CheckedChangeListenerImpl implements CompoundButton.OnCheckedChangeListener {
@@ -111,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        String text = "fghijkl pq QuQ quq";
+        String text = "fghijpq Quq";
         int textSize = 100;
         mTextEditText.setText(text);
         mTextSizeEditText.setText(textSize + "");
